@@ -203,6 +203,10 @@ class DbtItem(pytest.Item):
                     quote_policy[name] = False
             kwargs[name] = value
 
+        # >>> override to set adapter default
+        quote_policy = cls.get_default_quote_policy().to_dict()
+        # <<<
+
         return cls.create(
             include_policy=include_policy,
             quote_policy=quote_policy,
